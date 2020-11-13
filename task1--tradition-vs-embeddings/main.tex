@@ -85,7 +85,7 @@
 
 \begin{abstract}
 
-Improve / complement recommendations via graph representations (neural embeddings).
+In order to improve or complement traditional recommendation approaches, you will compare the results of pairwise similarity measures obtained via Matrix Factorization and Random Walks with similarities measured in a neural embedding space computed via word2vec/fasttext or graph representation learning (GRL).
 
 \end{abstract}
 
@@ -99,27 +99,33 @@ similarity, graph representation learning, graph embeddings, recommendations
 \section{Motivation}
 \label{sect:motivation}
 
+Recommender systems are popular and fundamental in many modern application areas, ranging from "simple" product recommendations on Amazon \& Netflix to highly-complex and mission-critical decision support systems in healthcare, financial transactions and control systems. Often recommenders are based on (dis)similarity of items, which can be derived from transactional information (\textit{user x bought product y at time z}). Since a global matrix representing such interaction is highly sparse, techniques like Matrix Factorization are often used to break down these (implicit) matrix into smaller, dense building blocks more amenable to efficient processing. A competing approach is to model the item domain \& transactions as embeddings, i.e. low-dimensional, dense representations of the input domain by feeding a neural network with examples of positive / negative correlations, significantly accelerating the process. These embeddings have proven extremely successful in NLP, but have been applied to a variety of other domains as well, including chemistry and genetics.
 
 \section{Goals}
 \label{sect:goals}
 
-Our overarching goal is to...
+This mini-project shall give you the opportunity to apply 3-4 different techniques of constructing a similarity space from a simple (Amazon) product dataset. The emphasis lies on learning how to
 
-\begin{figure}[hbt!]
-\begin{center}
-% \includegraphics[width=\textwidth]{figures/transductive_learning}
-\end{center}
-\caption{General overview of a (distributed) graph-based ML pipeline in the medical domain}
-\label{fig:Figure-1}
-\end{figure}
+\begin{itemize}
+  \item construct a corpus amenable to processing by word2vec, fasttext etc.
+  \item construct a simple graph structure out of the raw corpus, so that we can apply pre-determined graph algorithms on it (similarity measures via random walks, graph kernels, jaccard distance etc.).
+  \item compute graph-based embeddings (node representations) via an algorithm like GraphSAGE
+  \item compare the similarity spaces obtained by above methods to develop a feeling for their strenghts and weaknesses.
+\end{itemize}
+
+% \begin{figure}[hbt!]
+% \begin{center}
+% % \includegraphics[width=\textwidth]{figures/transductive_learning}
+% \end{center}
+% \caption{General overview of a (distributed) graph-based ML pipeline in the medical domain}
+% \label{fig:Figure-1}
+% \end{figure}
 
 
 \section{Procedure}
 \label{sect:procedure}
 
-network of products based only on transactions
-
-The 
+Starting with the raw corpus, your task will encompass an in
 
 \bibliography{references}
 
