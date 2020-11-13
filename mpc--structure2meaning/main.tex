@@ -1,0 +1,119 @@
+% Status as of 04.08.2020 15:00 CET bm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[review]{elsarticle}
+
+\usepackage{lineno}
+\usepackage{easylist}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{subcaption}
+\usepackage[breaklinks]{hyperref}
+\usepackage{url}
+\usepackage{textcomp}
+\usepackage{verbatim}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{mathtools}
+%\usepackage[ampersand]{easylist}
+\setcounter{tocdepth}{3}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.14}
+\pgfplotsset{compat=newest}
+\pgfplotsset{plot coordinates/math parser=false}
+\usepackage{tikzscale}
+\usetikzlibrary{matrix,chains,positioning,decorations.pathreplacing,arrows}
+\usepackage{tikz-qtree,tikz-qtree-compat}
+\usetikzlibrary{calc}
+\modulolinenumbers[5]
+\journal{Journal of cool mini-projects}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Elsevier bibliography styles
+%%%%%%%%%%%%%%%%%%%%%%%
+%% To change the style, put a % in front of the second line of the current style and
+%% remove the % from the second line of the style you would like to use.
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Numbered
+%\bibliographystyle{model1-num-names}
+
+%% Numbered without titles
+%\bibliographystyle{model1a-num-names}
+
+%% Harvard
+%\bibliographystyle{model2-names.bst}\biboptions{authoryear}
+
+%% Vancouver numbered
+%\usepackage{numcompress}\bibliographystyle{model3-num-names}
+
+%% Vancouver name/year
+%\usepackage{numcompress}\bibliographystyle{model4-names}\biboptions{authoryear}
+
+%% APA style
+%\bibliographystyle{model5-names}\biboptions{authoryear}
+
+%% AMA style
+%\usepackage{numcompress}\bibliographystyle{model6-num-names}
+
+%% `Elsevier LaTeX' style
+\bibliographystyle{elsarticle-num}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\begin{frontmatter}
+
+\title{Mini-project C: \\ Matching nodes of different graphs via embeddings}
+
+\author[TUG,MUG]{Supervisor: Bernd Malle}
+\author[TUG,MUG]{\small \\Professor: Andreas Holzinger}
+% \cortext[mycorrespondingauthor]{Corresponding author}
+% \ead{bernd.malle@medunigraz.at}
+
+\address[TUG]{Graz University of Technology, Austria}
+\address[MUG]{Medical University Graz, Austria}
+
+
+\begin{abstract}
+
+In order to match nodes between different graphs modeling the same underlying domain, you will employ graph representation learning in different settings and / or differently modified input graphs.
+
+\end{abstract}
+
+\begin{keyword}
+similarity, graph representation learning, graph embeddings, node matching, GraphSAGE
+\end{keyword}
+
+\end{frontmatter}
+
+
+\section{Motivation}
+\label{sect:motivation}
+
+Matching structures in different graphs, as well as subgraph matching within the same graph, are still open problems due to the exponential number of possible structural combinations (= combinatorial explosion). One possible approach to solving this matter efficiently might lie in computing embeddings, i.e. low-dimensional, sparse vector representations, for nodes and whole subgraphs. The basic idea is to reduce any arbitrarily complex neighbourhood structure surrounding a node into a compact representation by "aggregating" the feature vectors of its adjacent vertices (for each node of the graph). The resulting numerical representations are assumed to be representative of i) the features of nodes surrounding a node, but also ii) the local neighborhood structure. This should theoretically result in high cosine similarity for nodes of similar "meaning" in the graph.
+
+\section{Goals}
+\label{sect:goals}
+
+Our overarching goal is to experiment on 2 datasets - already given as curated graphs - and compute node embeddings in order to perform 
+
+\begin{enumerate}
+  \item node matching - nodes (in different graphs) exhibiting close cosine similarity should hold similar meaning in their original spaces. A challenge here is to check for the similar meaning, since textual descriptions in the feature vectors of the original space might only be "close" to human understanding.
+  \item link prediction - you can use the original graphs as \textit{ground truth}, which means links (edges) existing between nodes in those graphs should also crystallize in the computed embedding space (via proximity between nodes). You will have to find a way around the sparcity problem though, since it will be much easier to detect if a given edge would not be predicted by the embeddings than the other way around.
+\end{enumerate}
+
+
+\section{Procedure}
+\label{sect:procedure}
+
+For this mini-project we have prepared two graph-based datasets modeling the same underlying domain, which is skills, occupations \& knowledge. One of the datasets is the ESCO (European classification of Skills/Competencies \& Occupations), the other is the U.S. O*NET (Occupational Information Network). Both contain nodes representing occupations (jobs), Skills \& Knowledge, but there are striking differences in their makeup: While the ESCO contains richer information per node and a large collection for skills, the O*NET provides a much more complex (and therefore presumably expressive) network structure. It will thus be interesting to see if (and how, by what settings, assumptions, rules, parameters) we can arrive at embeddings capable of matching similar occupations from these different graphs.
+
+\section{Main challenge}
+\label{sect:challenge}
+
+Although learning embeddings from 2 graphs separately would be standard procedure, their coordinate systems would not be aligned - meaning the $k^th$ dimension of a vector in space $A$ will not bear the same meaning as the $k^th$ dimension of a vector in space $B$. You will therefore have to train the embeddings in a joint procedure, but without natural connections between the two graphs, the generation of meaningful positive / negative samples would fail. This will be a main challenge and we will discuss possible approaches upon start of the project.
+
+\bibliography{references}
+
+\end{document}

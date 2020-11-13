@@ -104,13 +104,13 @@ Recommender systems are popular and fundamental in many modern application areas
 \section{Goals}
 \label{sect:goals}
 
-This mini-project shall give you the opportunity to apply 3-4 different techniques of constructing a similarity space from a simple (Amazon) product dataset. The emphasis lies on learning how to
+This mini-project shall give you the opportunity to apply 3-4 different techniques of constructing a similarity space from a simple product dataset. The emphasis lies on learning how to...
 
 \begin{itemize}
   \item construct a corpus amenable to processing by word2vec, fasttext etc.
   \item construct a simple graph structure out of the raw corpus, so that we can apply pre-determined graph algorithms on it (similarity measures via random walks, graph kernels, jaccard distance etc.).
   \item compute graph-based embeddings (node representations) via an algorithm like GraphSAGE
-  \item compare the similarity spaces obtained by above methods to develop a feeling for their strenghts and weaknesses.
+  \item compare the similarity spaces obtained by the above methods to develop a feeling for their strenghts and weaknesses.
 \end{itemize}
 
 % \begin{figure}[hbt!]
@@ -125,7 +125,7 @@ This mini-project shall give you the opportunity to apply 3-4 different techniqu
 \section{Procedure}
 \label{sect:procedure}
 
-Starting with the raw corpus, your task will encompass an in
+Starting with a pre-processed dataset, you will decide on how to construct a text-based corpus as input to an embedder; the embedding itself can be done with standard algorithms like word2vec (e.g. gensim) or fasttext (available via a simple console command). In parallel, you will decide on how to construct a meaningful graph out of the dataset (\textit{co-purchasing information} might be obvious, but you could assume implicit relationships via categories, groups etc. as well..). The resulting graph will serve as a basis for similarity measurements via random walks or direct node comparisons; you can use any library or implementation you like for this part. Finally, you should experiment with different settings for your corpus / graph construction \& algorithmic parameters and measure the effects on pairwise similarities; we will discuss possible scenarious and/or baselines upon the start of the mini-project.
 
 \bibliography{references}
 
