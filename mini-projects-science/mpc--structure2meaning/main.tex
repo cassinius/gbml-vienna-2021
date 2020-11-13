@@ -98,10 +98,10 @@ Matching structures in different graphs, as well as subgraph matching within the
 
 Our overarching goal is to experiment on 2 datasets - already given as curated graphs - and compute node embeddings in order to perform 
 
-\begin{enumerate}
+\begin{itemize}
   \item node matching - nodes (in different graphs) exhibiting close cosine similarity should hold similar meaning in their original spaces. A challenge here is to check for the similar meaning, since textual descriptions in the feature vectors of the original space might only be "close" to human understanding.
   \item link prediction - you can use the original graphs as \textit{ground truth}, which means links (edges) existing between nodes in those graphs should also crystallize in the computed embedding space (via proximity between nodes). You will have to find a way around the sparcity problem though, since it will be much easier to detect if a given edge would not be predicted by the embeddings than the other way around.
-\end{enumerate}
+\end{itemize}
 
 
 \section{Procedure}

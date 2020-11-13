@@ -1,0 +1,114 @@
+% Status as of 04.08.2020 15:00 CET bm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[review]{elsarticle}
+
+\usepackage{lineno}
+\usepackage{easylist}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{subcaption}
+\usepackage[breaklinks]{hyperref}
+\usepackage{url}
+\usepackage{textcomp}
+\usepackage{verbatim}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{mathtools}
+%\usepackage[ampersand]{easylist}
+\setcounter{tocdepth}{3}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.14}
+\pgfplotsset{compat=newest}
+\pgfplotsset{plot coordinates/math parser=false}
+\usepackage{tikzscale}
+\usetikzlibrary{matrix,chains,positioning,decorations.pathreplacing,arrows}
+\usepackage{tikz-qtree,tikz-qtree-compat}
+\usetikzlibrary{calc}
+\modulolinenumbers[5]
+\journal{Journal of cool mini-projects}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Elsevier bibliography styles
+%%%%%%%%%%%%%%%%%%%%%%%
+%% To change the style, put a % in front of the second line of the current style and
+%% remove the % from the second line of the style you would like to use.
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Numbered
+%\bibliographystyle{model1-num-names}
+
+%% Numbered without titles
+%\bibliographystyle{model1a-num-names}
+
+%% Harvard
+%\bibliographystyle{model2-names.bst}\biboptions{authoryear}
+
+%% Vancouver numbered
+%\usepackage{numcompress}\bibliographystyle{model3-num-names}
+
+%% Vancouver name/year
+%\usepackage{numcompress}\bibliographystyle{model4-names}\biboptions{authoryear}
+
+%% APA style
+%\bibliographystyle{model5-names}\biboptions{authoryear}
+
+%% AMA style
+%\usepackage{numcompress}\bibliographystyle{model6-num-names}
+
+%% `Elsevier LaTeX' style
+\bibliographystyle{elsarticle-num}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\begin{frontmatter}
+
+\title{Mini-project B: \\ From embeddings to graphs to better embeddings...? }
+
+\author[TUG,MUG]{Supervisor: Bernd Malle}
+\author[TUG,MUG]{\small \\Professor: Andreas Holzinger}
+% \cortext[mycorrespondingauthor]{Corresponding author}
+% \ead{bernd.malle@medunigraz.at}
+
+\address[TUG]{Graz University of Technology, Austria}
+\address[MUG]{Medical University Graz, Austria}
+
+
+\begin{abstract}
+
+In order to improve embeddings constructed from a corpus, you will use similarity search in the embedding space to construct a \textit{kNN-G (k-nearest neighbor graph)} which you will subsequently feed to a graph representation learner.
+
+\end{abstract}
+
+\begin{keyword}
+similarity, graph representation learning, graph embeddings, k-NN graphs 
+\end{keyword}
+
+\end{frontmatter}
+
+
+\section{Motivation}
+\label{sect:motivation}
+
+Aside from traditional recommendation techniques, graph-based recommenders (and graph-based ML in general) have gained popularity in recent years, with companies like Neo4j introducing the elegant Cyper query language and larger corporations establishing cloud-based graph database infrastructures like Neptune (Amazon) and Cosmos (Microsoft). However, for the task of similarity-based recommendations, a simpler approach often lies in computing embeddings, since multiple factors contributing to a desired association between nodes would result in complex, therefore computationally expensive graph traversal rules. However, said similarity can also be trivially measured via cosine distance in the embedding space, with the added benefit that great (or infinite) distances between nodes in the graph is no inevitable hindrance. The training of embeddings from graphs has been successfully demonstrated in recent years; however, we can often not start with a graph in reality. Given a purely text-based corpus, for instance, we would need many (human) assumptions translating into edge formation rules before arriving at a (very biased) graph structure. Here we can go the reverse way: starting from an embedding space computed on e.g. text, we use its intrinsic similarity metric to construct a k-nearest neighbor graph. The question thus arises: can we combine both approaches in order to refine embeddings \textit{"out of themselves"}, e.g. because transitive effects in the similarity space can only be captured via structures in the resulting graph (which then in turn influences how graph representation learning aggregates features)?
+
+\section{Goals}
+\label{sect:goals}
+
+Your goal in this mini-project is straight-forward and two-fold. We want to arrive at good procedures to
+
+\begin{itemize}
+  \item construct a k-NN graph out of embeddings. There are several approaches available, like brute-force search, (random) space partitioning, and nn-descent - the choice of method (and parameters) is yours. Note: The question of how to measure \& test this intermediate graph representation will be subject to further discussion after the project has started.
+  \item compute a "refined" embedding space from the constructed k-NN graph \& compare the results to the ones obtained on the original embeddings. Can we visually inspect the differences, e.g. via the tensorflow embeddings projector? Is there a human-discernible difference in recommender quality?
+\end{itemize}
+
+
+\section{Procedure}
+\label{sect:procedure}
+
+You will start with a raw dataset as well as some pre-trained doc2vec / fasttext embeddings of the same. Then research available / suitable k-NN graph construction techniques, apply one or more to the embeddings and describe / measure the resulting graph. Feed this graph to GraphSAGE (with reasonable settings) and report on the quality of the resulting embeddings (we will have some metrics and test-shops at hand\dots).
+
+\bibliography{references}
+
+\end{document}
